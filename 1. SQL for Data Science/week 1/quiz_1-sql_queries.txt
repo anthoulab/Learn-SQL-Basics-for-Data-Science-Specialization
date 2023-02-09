@@ -1,0 +1,19 @@
+--For all of the questions in this quiz, we are using the Chinook database. The ER diagram is in the same folder with this .txt file.
+
+1) Retrieve all the records from the Employees table. What is Robert King's mailing address?
+
+SELECT FirstName, LastName, Address, City, State, Country
+FROM Employees
+WHERE FirstName = 'Robert' AND LastName = 'King'
+
+2) Retrieve the FirstName, LastName, Birthdate, Address, City, and State from the Employees table. Which of the employees listed below has a birthdate of 3-3-1965?
+
+SELECT FirstName, LastName, Birthdate, Address, City, State
+FROM Employees
+WHERE Birthdate  LIKE '%1965-03-03%'
+
+3) Retrieve all the columns from the Tracks table, but only return 20 rows.
+
+SELECT *
+FROM Tracks
+LIMIT 20
