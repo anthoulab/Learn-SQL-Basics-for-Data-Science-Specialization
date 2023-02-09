@@ -1,0 +1,38 @@
+--The ER diagram is in the same folder with this .txt file.
+
+1) Pull a list of customer ids with the customer’s full name, and address, along with combining their city and country together. Be sure to make a space in between these two and make it UPPER CASE. (e.g. LOS ANGELES USA)
+
+SELECT CustomerId, FirstName, LastName, Address, UPPER(City || ' ' || Country) AS citqy_and_country
+FROM Customers
+
+2) Create a new employee user id by combining the first 4 letters of the employee’s first name with the first 2 letters of the employee’s last name. Make the new field lower case and pull each individual step to show your work.
+
+SELECT LOWER(SUBSTR(FirstName, 1, 4) || SUBSTR(LastName, 1, 2)) AS newid
+FROM Employees
+
+3) Show a list of employees who have worked for the company for 15 or more years using the current date function. Sort by lastname ascending.
+
+SELECT STRFTIME('%Y', 'now')-STRFTIME('%Y', HireDate) >= 15, LastName
+FROM Employees
+ORDER BY LastName ASC;
+
+4) Profiling the Customers table and indicate if any of the columns Fax, Phone, PostalCode, Address, Company, FirstName have null values.
+
+SELECT CustomerId
+FROM Customers
+WHERE <column_name> IS NULL
+
+<column_name>: Fax, Phone, PostalCode, Address, Company, FirstName
+
+5) Find the cities with the most customers and rank in descending order.
+
+SELECT COUNT(City), City
+FROM Customers
+GROUP BY City
+ORDER BY COUNT(City) DESC
+
+6) Create a new customer invoice id by combining a customer’s invoice id with their first and last name while ordering your query in the following order: firstname, lastname, and invoiceID.
+
+SELECT i.InvoiceId || c.FirstName || c.LastName AS newinvoiceid
+FROM Customers as c Left join invoices as i ON c.customerid = i.customerid
+ORDER BY FirstName, LastName, InvoiceId
