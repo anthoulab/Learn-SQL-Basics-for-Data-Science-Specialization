@@ -24,7 +24,7 @@ SELECT *
 FROM Invoices
 WHERE (CustomerID = 56 OR CustomerID = 58) AND (Total BETWEEN 1 AND 5)
 
-5) ind all the tracks whose name starts with 'All'.
+5) Φind all the tracks whose name starts with 'All'.
 
 SELECT *
 FROM Tracks
